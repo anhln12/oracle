@@ -7,6 +7,11 @@
 mysql> select id, phone, uid from vnphone INTO OUTFILE '/tmp/vn.txt';
 ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
 
+Diable secure-file-priv variable
+[mysqld]
+secure-file-priv = ""
+systemctl restart mysqld
+
 sed s/\\t/,/g vn.txt > vn.txt
  
  ==oracle==
