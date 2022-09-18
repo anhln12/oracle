@@ -1,7 +1,10 @@
 # oracle
 
  select name, open_mode from v$pdbs;
+ 
  alter session set container=orclpdb;
+
+ALTER PLUGGABLE DATABASE OPEN
  
  ==mysql==
 mysql> select id, phone, uid from vnphone INTO OUTFILE '/tmp/vn.txt';
