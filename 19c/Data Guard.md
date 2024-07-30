@@ -37,8 +37,16 @@ Nếu database ở chế độ noarchivelog, chuyển sang archivelog.
 ```
 SHUTDOWN IMMEDIATE;
 STARTUP MOUNT;
-ALTER DATABASE ARCHIVELOG;
-ALTER DATABASE OPEN;
+SQL> ALTER DATABASE ARCHIVELOG;
+Database altered.
+SQL> ALTER DATABASE FORCE LOGGING;
+Database altered.
+SQL> ALTER DATABASE OPEN;
+Database altered.
+SQL> select FORCE_LOGGING,log_mode from v$database;
+FORCE_LOGGING           LOG_MODE
+—————————————           ————
+YES                     ARCHIVELOG
 ```
 
 
