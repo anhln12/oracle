@@ -23,3 +23,22 @@ Thiết lập Standby Server bằng giải pháp DUPLICATE:
 
 **Thiết lập Primary Server**
 
+Logging
+Kiểm tra xem database chính có ở chế độ archivelog.
+```
+SELECT log_mode FROM v$database;
+LOG_MODE
+------------
+NOARCHIVELOG
+SQL>
+```
+
+Nếu database ở chế độ noarchivelog, chuyển sang archivelog.
+```
+SHUTDOWN IMMEDIATE;
+STARTUP MOUNT;
+ALTER DATABASE ARCHIVELOG;
+ALTER DATABASE OPEN;
+```
+
+
