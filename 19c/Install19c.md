@@ -130,12 +130,15 @@ source .bash_profile
 **Installation**
 
 # Unzip software.
+```
 cd $ORACLE_HOME
 unzip -oq /path/to/software/LINUX.X64_193000_db_home.zip
+```
 
 # Fake Oracle Linux 7.
+```
 export CV_ASSUME_DISTID=OEL7.8
-
+```
 # Silent mode
 ```
 ./runInstaller -ignorePrereq -waitforcompletion -silent \
