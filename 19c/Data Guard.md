@@ -264,5 +264,34 @@ startup pfile='/home/oracle/initasimdbr.ora' nomount;
 
 Connect to the rman in standby database
 ```
-rman target sys/SysPassword1@oradb auxiliary sys/SysPassword1@oradbr
+rman TARGET sys/SysPassword1@asimdb AUXILIARY sys/SysPassword1@asimdbr
+
+DUPLICATE TARGET DATABASE FOR STANDBY FROM ACTIVE DATABASE DORECOVER
+SPFILE
+SET DB_UNIQUE_NAME 'ASIMDBR' COMMENT 'Is standby'
+SET LOG_ARCHIVE_DEST_2 'SERVICE=asimdb ASYNC VALID_FOR=(ONLINE_LOGFILES,PRIMARY_ROLE) DB_UNIQUE_NAME=asimdb'
+SET AUDIT_FILE_DEST '/u01/app/oracle/admin/asimdbr/adump'
+SET CONTROL_FILES '/u02/oradata/ASIMDBR/control01.ctl'
+SET FAL_SERVER 'ASIMDB'
+NOFILENAMECHECK;
 ```
+
+Once the duplicate command is done, you have already created your standby database.
+
+Now connect to the standby database and verify its role.
+
+```
+SQL> show parameter db_name
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+db_name                              string      asimdb
+SQL> show parameter db_unique_name
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+db_unique_name                       string      ASIMDBR
+```
+
+
+
