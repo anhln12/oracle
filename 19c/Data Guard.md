@@ -22,7 +22,8 @@ Thiết lập Standby Server bằng giải pháp DUPLICATE:
 * Máy chủ dự phòng (standby server 10.255.68.22) chỉ cài đặt phần mềm Oracle Database
 
 |Items|Primary – SRV1|Standby – SRV2|
-|hostname|||
+
+|hostname|a|a|
 
 **Thiết lập Primary Server**
 
