@@ -1,4 +1,4 @@
-Rman default
+**Rman default**
 ```
 RMAN> show all;  
 
@@ -23,7 +23,7 @@ CONFIGURE SNAPSHOT CONTROLFILE NAME TO '/u01/app/oracle/product/19.3.0/dbhome_1/
 RMAN>
 ```
 
-RETENTION POLICY
+**RETENTION POLICY**
 
 Cấu hình đầu tiên ta thấy là retention policy, cấu hình việc lưu giữ các bản backup.
 
@@ -32,22 +32,22 @@ Retention policy có thể cấu hình theo 1 trong 2 tiêu chí:
 * Redundancy: xác định số bản backup full/level 0 của datafile và control file cần lưu giữ. Mặc định là 1, tức là luôn lưu giữ ít nhất 1 bản backup full/level 0.
 
  
-BACKUP OPTIMIZATION
+**BACKUP OPTIMIZATION**
 
 Mặc định là OFF. Nếu set về ON, khi backup RMAN sẽ kiểm tra xem datafile/archivelog/backupset đã có bản backup tương tự chưa, nếu có thì bỏ qua không cần backup.
 ```
 RMAN> CONFIGURE BACKUP OPTIMIZATION ON;
 ```
 
-DEVICE TYPE
-
+**DEVICE TYPE
+**
 Vị trí backup mặc định nếu ko chỉ định vị trí khi backup, nếu là DISK không đặt vị trí, RMAN sẽ backup mặc định vào vùng FRA.
 
-CONTROLFILE AUTOBACKUP
+**CONTROLFILE AUTOBACKUP**
 
 Cấu hình backup controlfile tự động bất kỳ khi nào thực hiện backup hay có thay đổi cấu trúc diễn database, chẳng hạn như tạo thêm tablespace, add thêm datafile.
 
-CONTROLFILE AUTOBACKUP FORMAT
+**CONTROLFILE AUTOBACKUP FORMAT**
 
 Chỉ định format tên file autobackup của controlfile
 
@@ -55,23 +55,23 @@ DEVICE TYPE DISK PARALLELISM 1 BACKUP TYPE TO BACKUPSET
 
 Cấu hình số parallel và backup type mặc định là backupset khi backup ra disk
 
-DATAFILE BACKUP COPIES FOR DEVICE TYPE DISK
+**DATAFILE BACKUP COPIES FOR DEVICE TYPE DISK**
 
 Xác định số bản backup datafile được thực hiện (3 => mirror 3 bản backup ở các vị trí khác nhau)
 
-ARCHIVELOG BACKUP COPIES FOR DEVICE TYPE DISK
+**ARCHIVELOG BACKUP COPIES FOR DEVICE TYPE DISK**
 
 Xác định số bản backup archivelog được thực hiện
 
-MAXSETSIZE
+**MAXSETSIZE**
 
 Đặt kích thước tối đa cho backupset. Mặc định là UNLIMITED
 
-ARCHIVELOG DELETION POLICY
+**ARCHIVELOG DELETION POLICY**
 
 Tham số này liên quan đến việc xóa tự động archivelog
-
-SNAPSHOT CONTROLFILE NAME
+**
+SNAPSHOT CONTROLFILE NAME**
 
 Snapshot controlfile được tạo ra khi đồng bộ với recovery catalog hoặc khi thực hiện backup controlfile để đảm bảo tính ổn định (read consistent)
 Mặc định snapshot controlfile được lưu trong ORACLE_HOME/dbs
