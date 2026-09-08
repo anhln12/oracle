@@ -76,3 +76,29 @@ WITH
   SELECT x.top_sql_id, x.sql_plan_hash_value, x."PERCENT(%)", x.sql_text
     FROM x
 ORDER BY plan_samples DESC NULLS LAST;
+
+
+
+
+
+
+
+
+
+
+# Kill
+
+BEGIN
+  FOR r IN (
+    SELECT sid, serial#, inst_id 
+    FROM gv$session 
+    WHERE sql_id IN ('3uctw9q61dcxu', '3juy1s0tdzjyh', '9s01325dkrjsb', '63mu1ctug9vu7')
+  ) LOOP
+    BEGIN
+      EXECUTE IMMEDIATE 'ALTER SYSTEM KILL SESSION ''' || r.sid || ',' || r.serial# || ',@' || r.inst_id || ''' IMMEDIATE';
+    EXCEPTION
+      WHEN OTHERS THEN NULL;
+    END;
+  END LOOP;
+END;
+/
